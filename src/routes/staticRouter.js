@@ -3,7 +3,10 @@ import { Router } from "express";
 const router = Router();
 
 router.get('/', (req, res)=>{
-    res.render('home')
+    return res.render('home',{
+        user: req.user
+    })
+
 })
 
 router.get("/signin", (req, res)=>{

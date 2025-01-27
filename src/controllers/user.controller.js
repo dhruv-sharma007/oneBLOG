@@ -8,10 +8,10 @@ const signupHandler = async (req, res) => {
 		password,
 	});
 
-	res.redirect("/home");
+	res.redirect("/");
 };
 
-const signIn = async (req, res) => {
+const signInHandler = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		const token = await User.matchPasswordAndGenerateToken(email, password);
@@ -24,4 +24,4 @@ const signIn = async (req, res) => {
 	}
 };
 
-export { signupHandler, signIn };
+export { signupHandler, signInHandler };
