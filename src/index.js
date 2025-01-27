@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 
 import staticRoute from './routes/staticRouter.js'
 import userRoute from './routes/user.route.js'
+import blogRoute from './routes/blog.route.js'
 
 import connectDB from "./db/connect.db.js"
 import dotenv from "dotenv"
@@ -23,6 +24,7 @@ app.set('views', path.resolve('./src/views'))
 
 app.use('/', staticRoute)
 app.use('/user', userRoute)
+app.use('/blog', staticRoute)
 
 connectDB()
 .then(()=>{

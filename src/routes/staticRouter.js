@@ -17,4 +17,10 @@ router.get("/signup", (req, res)=>{
     return res.render('signup')
 })
 
+router.get("/add-blog", (req, res)=>{
+    return res.render('addBlog',{
+        user: req.user,
+    })
+})
+
 export default router

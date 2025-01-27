@@ -4,14 +4,14 @@ const checkForAuthentication = (cookiename)=>{
     return (req,res,next)=>{
         const tokenCookiesValue = req.cookies[cookiename]
         if(!tokenCookiesValue){
-            next()
+           return next()
         }
 
         try {
             const userPayload = validateToken(tokenCookiesValue)
             req.user = userPayload;
         } catch (error) {}
-        next()
+        return next()
     }
 }
 

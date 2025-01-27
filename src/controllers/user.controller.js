@@ -24,4 +24,12 @@ const signInHandler = async (req, res) => {
 	}
 };
 
-export { signupHandler, signInHandler };
+const logoutHandler = async (req, res) => {
+	return res.clearCookie("token").redirect("/");
+};
+
+export { 
+	signupHandler, 
+	signInHandler, 
+	logoutHandler, 
+};
