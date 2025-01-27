@@ -1,25 +1,27 @@
-import User from "../models/user.model.js"
+import User from "../models/user.model.js";
 
-const signupHandler = async (req, res)=>{
-    const {fullName, email, password} = req.body
-    await User.create({
-        fullName,
-        email,
-        password,
-    });
+const signupHandler = async (req, res) => {
+	const { fullName, email, password } = req.body;
+	await User.create({
+		fullName,
+		email,
+		password,
+	});
 
-    res.redirect('/home')
-}
+	res.redirect("/home");
+};
 
-const signIn =async (req, res)=>{
-    const { email, password } = req.body
-    const user = await User.matchPassword(email, password)
-    console.log("User:", user);
-     
-}
+const signIn = async (req, res) => {
+	const { email, password } = req.body;
+	try {
+		const token = await User.matchPasswordAndGenerateToken(email, password);
 
-export {
-    signupHandler,
-    signIn
-}
+		return res.cookie("token", token).redirect("/");
+	} catch (error) {
+		return res.render("signin", {
+			error: "Incorrect Credentials",
+		});
+	}
+};
 
+export { signupHandler, signIn };
