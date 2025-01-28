@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import staticRoute from './routes/staticRouter.js'
 import userRoute from './routes/user.route.js'
 import blogRoute from './routes/blog.route.js'
+import staticBlogRoute from './routes/blog.static.route.js'
 
 import connectDB from "./db/connect.db.js"
 import dotenv from "dotenv"
@@ -18,13 +19,19 @@ const port = 80
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(checkForAuthentication('token'))
+app.use('/uploads', express.static('public/uploads'));
+app.use('/images', express.static('public/images'));
 
 app.set('view engine', 'ejs')
 app.set('views', path.resolve('./src/views'))
 
+//static route
 app.use('/', staticRoute)
+app.use('/blog', staticBlogRoute)
+
+//api Route
+app.use('/api', blogRoute)
 app.use('/user', userRoute)
-app.use('/blog', staticRoute)
 
 connectDB()
 .then(()=>{

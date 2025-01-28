@@ -1,10 +1,13 @@
 import { Router } from "express";
+import Blog from "../models/blog.model.js";
 
 const router = Router();
 
-router.get('/', (req, res)=>{
+router.get('/', async(req, res)=>{
+    const allBlogs =await Blog.find({})
     return res.render('home',{
-        user: req.user
+        user: req.user,
+        blogs: allBlogs,
     })
 
 })
