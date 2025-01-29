@@ -4,6 +4,10 @@ npm-debug.log
 yarn-error.log
 .env
 
+#docker
+Dockerfile
+.dockerignore
+
 # Logs
 logs/
 *.log
