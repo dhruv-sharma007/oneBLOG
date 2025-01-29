@@ -14,7 +14,7 @@ dotenv.config()
 
 
 const app = express()
-const port = 80
+const port = process.env.PORT || 8956
 
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
